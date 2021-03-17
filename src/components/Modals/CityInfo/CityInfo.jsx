@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './CityInfo.css'
 import Modal from 'react-bootstrap/Modal';
 

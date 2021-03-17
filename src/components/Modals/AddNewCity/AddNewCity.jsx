@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 
 import './AddNewCity.css'

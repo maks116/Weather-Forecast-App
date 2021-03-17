@@ -29,7 +29,7 @@ const myReducer = (state = initialState, action) => {
             stateCopy.citys = [...state.citys];
             stateCopy.citys[idx] = action.newCity
             stateCopy.citys[idx]['isLoaded'] = true
-            console.log('Update' + stateCopy)
+            // console.log('Update' + stateCopy)
             return stateCopy
         }
         default:
@@ -41,6 +41,7 @@ const myReducer = (state = initialState, action) => {
 
 export const deleteCity = (cityId) => ({ type: DELETE_CITY, cityId })
 export const addCity = (newCity, isLoaded?= true) => ({ type: ADD_CITY, newCity, isLoaded })
+// мой компилятор ругается говорит, что должен быть ts, но работает)
 export const updateCity = (newCity, cityId) => ({ type: UPDATE_CITY, newCity, cityId })
 
 

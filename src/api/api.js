@@ -32,7 +32,7 @@ export const cityApi = {
     getTomorrowByLocation(lat = 35, lon = 139) {
         return instanse.get('https://api.openweathermap.org/data/2.5/onecall?lat=35&lon=139&cnt=1&exclude=current,minutely,hourly,alerts&appid=a91517bb5e6960f36a9c4ff7467b8642')//(`?lat=${lat}&lon=${lon}&cnt=1&exclude=current,minutely,hourly,alerts`)
             .then(response => {
-                console.log (`lat = ${lat}, lon = ${lon}`)
+                // console.log (`lat = ${lat}, lon = ${lon}`)
                 return response.data;
             })
             .catch(error => {

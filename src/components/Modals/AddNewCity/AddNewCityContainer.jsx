@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { addCityByLocation, addCityByName, updateAllCity } from '../../../redux/myReducer'
 import AddNewCity from './AddNewCity';
@@ -19,11 +19,10 @@ const AddNewCityContainer = (props) => {
         }
 
         getLocation()
-    }, []); // Реакт выдает предупреждение о зависимости от пропсов, но логика вынесена за пределы фк, буду благодарен, если поможете понять эту мысль (по сути перерисовка по геолокации нам не нужна так, что думаю все ок) 
+    }, []); // Реакт выдает предупреждение о зависимости от пропсов, но логика вынесена за пределы фк, буду благодарен, если поможете понять эту мысль (по сути перерисовка по геолокации нужна 1 раз поэтому думаю, что думаю все ок) 
 
     const delay = 30; //тест
-    const delay2 = props.citys.length // количество запросов в секунду, чтобы не превышать 60запросов в минуту
-    console.log(delay2)
+    //const delay2 = props.citys.length // количество запросов в секунду, чтобы не превышать 60запросов в минуту, заблочат-проверенно)
 
       useEffect(() => {
         const interval = setInterval(() => {
