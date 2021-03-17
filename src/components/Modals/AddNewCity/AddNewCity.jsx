@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import Modal from 'react-bootstrap/Modal';
 // import ModalBody from "react-bootstrap/ModalBody";
 // import ModalHeader from "react-bootstrap/ModalHeader";
@@ -34,6 +34,13 @@ const AddNewCity = (props) => {
         hideModal()
     }
 
+    const inputElement = useRef(null);
+    useEffect(() => {
+        if (inputElement.current) {
+          inputElement.current.focus();
+        }
+      }, []);
+
     return (
         <div className="add-new-city">
             <button 
@@ -46,11 +53,12 @@ const AddNewCity = (props) => {
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <input 
+                    <input    
+                        type="text"      
                         className="input-city"
                         placeholder="Moscow examplle"
-                        onChange={onNewCityChange}
-                    ></input>
+                        onChange={onNewCityChange}                    
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     <button onClick={hideModal}>Отменить</button>

@@ -17,7 +17,8 @@ export const cityApi = {
     },
     getCityByName(name) {    
         return instanse.get(`?q=${name}`)
-        .then(response => {            
+        .then(response => {  
+            console.log(`getCityByName = ${name}`)          
             return response.data;
         });
     }

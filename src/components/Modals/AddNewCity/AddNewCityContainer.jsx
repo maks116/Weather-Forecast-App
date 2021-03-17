@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import {addCityByLocation, addCityByName} from '../../../redux/myReducer'
+import { addCityByLocation, addCityByName, updateAllCity } from '../../../redux/myReducer'
 import AddNewCity from './AddNewCity';
 
 const AddNewCityContainer = (props) => {
@@ -11,24 +11,38 @@ const AddNewCityContainer = (props) => {
                 const lat = pos.coords.latitude;
                 const lon = pos.coords.longitude;
                 props.addCityByLocation(lat, lon);
-            }   
-              function error(err) {
+            }
+            function error(err) {
                 alert(`ERROR(${err.code}): ${err.message}`);
-              };
-              navigator.geolocation.getCurrentPosition(success, error);
+            };
+            navigator.geolocation.getCurrentPosition(success, error);
         }
 
-        getLocation()    
+        getLocation()
     }, []); // Реакт выдает предупреждение о зависимости от пропсов, но логика вынесена за пределы фк, буду благодарен, если поможете понять эту мысль (по сути перерисовка по геолокации нам не нужна так, что думаю все ок) 
 
+    const delay = 5;
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        function update () {
+            props.citys.map((city) =>props.updateAllCity(city))            
+            console.log(`This will run every 5 second! update`);
+            setShow(true)
+        }
+        setInterval(() => {          
+            update()
+        }, delay*1000);
+      }, [show]);
 
     return (
-        <AddNewCity 
-            citys = {props.citys} 
-            addCityByName = {props.addCityByName} 
+        <AddNewCity
+            citys={props.citys}
+            addCityByName={props.addCityByName}
         />
     )
 }
+
 
 let mapStateToProps = (state) => {
     return {
@@ -36,4 +50,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addCityByLocation, addCityByName})(AddNewCityContainer);
+export default connect(mapStateToProps, { addCityByLocation, addCityByName, updateAllCity })(AddNewCityContainer);

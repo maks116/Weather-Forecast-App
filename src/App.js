@@ -7,10 +7,8 @@ const App = () => {
   
   return (
     <div className="app">
-
         <TownContainer/>
-        <AddNewCityContainer />
-      
+        <AddNewCityContainer />      
     </div>
   );
 };

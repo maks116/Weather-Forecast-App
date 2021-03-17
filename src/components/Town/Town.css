@@ -3,10 +3,11 @@
     flex-direction: row;
     column-gap: 20px;
     justify-content: space-between;
-    background-color: rgb(233, 247, 247);
+    background-color: rgb(137, 153, 153);
     width: 100%;
     height: 35px;
     font-size: 15pt;
+    margin: 5px;
 }
 
 .snow {

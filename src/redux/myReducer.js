@@ -30,7 +30,6 @@ const myReducer = (state = initialState, action) => {
             stateCopy.citys[idx] = action.newCity
             stateCopy.citys[idx]['isLoaded'] = true
             console.log('Update')
-            debugger
             return stateCopy
         }
         default:
@@ -46,7 +45,6 @@ export const addCityByLocation = (lat, lon) => {
     return (dispatch) => {
         cityApi.getCityByLocation(lat, lon).then(data => {
             dispatch(addCity(data))
-            debugger
         })
     }
 }
@@ -56,6 +54,14 @@ export const addCityByName = (newCity, isLoaded, cityId) => {
         dispatch(addCity(newCity, isLoaded));
         cityApi.getCityByName(newCity.name).then(data => {
             dispatch(updateCity(data, cityId))
+        })
+    }
+}
+
+export const updateAllCity = (newCity) => {
+    return (dispatch) => {
+        cityApi.getCityByName(newCity.name).then(data => {
+            dispatch(updateCity(data, newCity.id))
         })
     }
 }
