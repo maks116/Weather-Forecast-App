@@ -21,7 +21,7 @@ const AddNewCityContainer = (props) => {
         getLocation()
     }, []); // Реакт выдает предупреждение о зависимости от пропсов, но логика вынесена за пределы фк, буду благодарен, если поможете понять эту мысль (по сути перерисовка по геолокации нам не нужна так, что думаю все ок) 
 
-    const delay = 5;
+    const delay = 500;
     const [show, setShow] = useState(false);
 
     useEffect(() => {

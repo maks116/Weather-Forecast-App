@@ -1,9 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import Modal from 'react-bootstrap/Modal';
-// import ModalBody from "react-bootstrap/ModalBody";
-// import ModalHeader from "react-bootstrap/ModalHeader";
-// import ModalFooter from "react-bootstrap/ModalFooter";
-// import ModalTitle from "react-bootstrap/ModalTitle";
+
 import './AddNewCity.css'
 
 const AddNewCity = (props) => {
