@@ -31,13 +31,6 @@ const AddNewCity = (props) => {
         hideModal()
     }
 
-    const inputElement = useRef(null);
-    useEffect(() => {
-        if (inputElement.current) {
-          inputElement.current.focus();
-        }
-      }, []);
-
     return (
         <div className="add-new-city">
             <button 
@@ -45,6 +38,7 @@ const AddNewCity = (props) => {
                 onClick={showModal}>
                 Добавить город!
             </button>
+            
             <Modal show={isOpen} onHide={hideModal} onEntered={modalLoaded}>
                 <Modal.Header>
                     <Modal.Title>{title}</Modal.Title>

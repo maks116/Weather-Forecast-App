@@ -21,19 +21,17 @@ const AddNewCityContainer = (props) => {
         getLocation()
     }, []); // Реакт выдает предупреждение о зависимости от пропсов, но логика вынесена за пределы фк, буду благодарен, если поможете понять эту мысль (по сути перерисовка по геолокации нам не нужна так, что думаю все ок) 
 
-    const delay = 500;
-    const [show, setShow] = useState(false);
+    const delay = 30; // максимум 60 запросв в минуту
 
-    useEffect(() => {
-        function update () {
-            props.citys.map((city) =>props.updateAllCity(city))            
-            console.log(`This will run every 5 second! update`);
-            setShow(true)
-        }
-        setInterval(() => {          
-            update()
-        }, delay*1000);
-      }, [show]);
+      useEffect(() => {
+        const interval = setInterval(() => {
+            props.citys.map((city) =>props.updateAllCity(city))
+        }, delay * 1000);
+        return () => clearInterval(interval);
+      }, [props.citys]
+      );
+
+
 
     return (
         <AddNewCity
