@@ -1,0 +1,21 @@
+.city {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: space-between;
+    background-color: rgb(233, 247, 247);
+    width: 100%;
+    height: 35px;
+    font-size: 15pt;
+}
+
+.snow {
+    align-self: center;
+}
+
+
+.delete-button {
+    width: 35px;
+    margin: 2px;
+
+}
