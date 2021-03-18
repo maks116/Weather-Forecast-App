@@ -12,20 +12,40 @@ const CityInfo = (props) => {
     const R = 100 // радиус в px
     const imgX = 12 // смещение картинки по Х
     const imgY = 14 // смещение картинки по У
-    let sunrise = new Date(props.sys.sunrise * 1000);
-    let sunset = new Date(props.sys.sunset * 1000);
+    let sunriseToday = new Date(props.daily[0].sunrise * 1000);
+    let sunsetToday = new Date(props.daily[0].sunset * 1000);
+    let sunriseTomorrow = new Date(props.daily[1].sunrise * 1000);
+    let sunsetTomorrow = new Date(props.daily[1].sunset * 1000);
 
-    sunrise = sunrise.getHours() * 3600 + sunrise.getMinutes() * 60 + sunset.getSeconds()
-    sunset = sunset.getHours() * 3600 + sunset.getMinutes() * 60 + sunset.getSeconds()
+
+    function calcSec(timeStamp) {
+        return timeStamp.getHours() * 3600 + timeStamp.getMinutes() * 60 + timeStamp.getSeconds()
+    }
+
+    function calcX(dateSec) {
+        return dateSec * 200 / daySecond
+    }
+    function calcY(x) {
+        return Math.pow(Math.abs(Math.pow(R, 2) - Math.pow(x - 100, 2)), 0.5)
+    }
+
+    sunriseToday = calcSec(sunriseToday)
+    sunsetToday = calcSec(sunsetToday)
+    sunriseTomorrow = calcSec(sunriseTomorrow)
+    sunsetTomorrow = calcSec(sunsetTomorrow)
 
     const xPos = {
-        sunriseXPos: sunrise * 200 / daySecond,
-        sunsetXPos: sunset * 200 / daySecond
+        sunriseToday: calcX(sunriseToday),
+        sunsetToday: calcX(sunsetToday),
+        sunriseTomorrow: calcX(sunriseTomorrow),
+        sunsetTomorrow: calcX(sunsetTomorrow),
     }
 
     const yPos = {
-        sunriseYPos: Math.pow(Math.abs(Math.pow(R, 2) - Math.pow(xPos.sunriseXPos - 100, 2)), 0.5),
-        sunsetYPos: Math.pow(Math.abs(Math.pow(R, 2) - Math.pow(xPos.sunsetXPos - 100, 2)), 0.5)
+        sunriseToday: calcY(xPos.sunriseToday),
+        sunsetToday: calcY(xPos.sunsetToday),
+        sunriseTomorrow: calcY(xPos.sunriseTomorrow),
+        sunsetTomorrow: calcY(xPos.sunsetTomorrow)
     }
 
     return (
@@ -44,24 +64,22 @@ const CityInfo = (props) => {
                 </div>
                 <div className="container-cube">
                     <div className="sunrise-sunset">
-                        <p className="sun">
-                            <i
-                                style={{
-                                    left: xPos.sunriseXPos - imgX,
-                                    top: 100 - yPos.sunriseYPos - imgY   // меняем начало координат по оси У
-                                }}
-                                className="far fa-sun sunrise"
-                            >
-                            </i>
-                            <i
-                                style={{
-                                    left: xPos.sunsetXPos - imgX,
-                                    top: 100 - yPos.sunsetYPos - imgY // меняем начало координат по оси У
-                                }}
-                                className="far fa-moon sunset"
-                            >
-                            </i>
-                        </p>
+                        <i
+                            style={{
+                                left: xPos.sunriseToday - imgX,
+                                top: 100 - yPos.sunriseToday - imgY   // меняем начало координат по оси У
+                            }}
+                            className="far fa-sun sunrise"
+                        >
+                        </i>
+                        <i
+                            style={{
+                                left: xPos.sunsetToday - imgX,
+                                top: 100 - yPos.sunsetToday - imgY // меняем начало координат по оси У
+                            }}
+                            className="far fa-moon sunset"
+                        >
+                        </i>
                     </div>
                 </div>
                 <div className="line-info">
@@ -71,6 +89,26 @@ const CityInfo = (props) => {
                         src={`http://openweathermap.org/img/wn/${props.daily[1].weather[0].icon}@2x.png`}
                         alt={props.daily[1].weather[0].description}>
                     </img>
+                </div>
+                <div className="container-cube">
+                    <div className="sunrise-sunset">
+                        <i
+                            style={{
+                                left: xPos.sunriseTomorrow - imgX,
+                                top: 100 - yPos.sunriseTomorrow - imgY   // меняем начало координат по оси У
+                            }}
+                            className="far fa-sun sunrise"
+                        >
+                        </i>
+                        <i
+                            style={{
+                                left: xPos.sunsetTomorrow - imgX,
+                                top: 100 - yPos.sunsetTomorrow - imgY // меняем начало координат по оси У
+                            }}
+                            className="far fa-moon sunset"
+                        >
+                        </i>
+                    </div>
                 </div>
             </Modal.Body>
             <Modal.Footer>

@@ -20,7 +20,7 @@ const Town = (props) => {
     const modalLoaded = () => {
         setTitle("Введите название города");
     };
-
+    
     return (
         <div
             className="city"
