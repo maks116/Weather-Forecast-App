@@ -16,52 +16,63 @@ const myReducer = (state = initialState, action) => {
             const idx = state.citys.findIndex((el) => el.id === action.cityId)
             return { ...state, citys: [...state.citys.slice(0, idx), ...state.citys.slice(idx + 1)] }
         }
+
         case ADD_CITY: {
-            let stateCopy = { ...state };
-            stateCopy.citys = [...state.citys];
-            action.newCity['daily'] = []
-            action.newCity['isLoaded'] = action.isLoaded
-            stateCopy.citys.push(action.newCity);
-            if (stateCopy.firstLoad) {
-                stateCopy.citys[0].name = "Моё местоположение"
-                stateCopy.firstLoad = false
+            const { newCity, isLoaded } = action;
+            return {
+                ...state,
+                citys: (() => {
+                    if (state.firstLoad)
+                        newCity.name = "Моё местоположение"
+                    newCity['isLoaded'] = isLoaded
+                    newCity['daily'] = []
+                    return [...state.citys, newCity]
+                })(),
+                firstLoad: false
             }
-            return stateCopy;
         }
+        
         case UPDATE_CITY: {
-            const idx = state.citys.findIndex((el) => el.id === action.cityId)
-            let stateCopy = { ...state };
-            stateCopy.citys = [...state.citys];
-            stateCopy.citys[idx].id = action.newCity.id
-            stateCopy.citys[idx].main = action.newCity.main
-            stateCopy.citys[idx].coord = action.newCity.coord
-            stateCopy.citys[idx].weather = [...action.newCity.weather]
-            stateCopy.citys[idx].isLoaded = true
-            return stateCopy
+            const { newCity, cityId } = action;
+            return {
+                ...state,
+                citys: state.citys.map(city => {
+                    if (city.id === cityId) {
+                        city.id = newCity.id
+                        city.main = newCity.main
+                        city.coord = newCity.coord
+                        city.weather = newCity.weather
+                        city.isLoaded = true
+                    }
+                    return city
+                })
+            }
         }
-        case UPDATE_ALL_CITY: {            
-            const idx = state.citys.findIndex((el) => el.id === action.cityId)
-            let stateCopy = { ...state };
-            stateCopy.citys = [...state.citys];
-            stateCopy.citys[idx].daily = [...action.newCity.daily];
-            stateCopy.citys[idx].weather = [...action.newCity.current.weather]
-            stateCopy.citys[idx].main.temp = action.newCity.current.temp
-            stateCopy.citys[idx]['isLoaded'] = true
-            return stateCopy
+
+        case UPDATE_ALL_CITY: {
+            const { newCity, cityId } = action;
+            return {
+                ...state,
+                citys: state.citys.map(city => {
+                    if (city.id === cityId) {
+                        city.daily = newCity.daily
+                        city.main.temp = newCity.current.temp
+                        city.weather = newCity.current.weather
+                    }
+                    return city
+                })
+            }
         }
         default:
             return state;
     }
 }
 
-
-
 export const deleteCity = (cityId) => ({ type: DELETE_CITY, cityId })
 export const addCity = (newCity, isLoaded?= true) => ({ type: ADD_CITY, newCity, isLoaded })
 // мой компилятор ругается говорит, что должен быть ts, но работает)
 export const addUpdateCity = (newCity, cityId) => ({ type: UPDATE_CITY, newCity, cityId })
 export const updateCity = (newCity, cityId) => ({ type: UPDATE_ALL_CITY, newCity, cityId })
-
 
 export const addCityByLocation = (lat, lon) => {
     return (dispatch) => {
@@ -71,7 +82,7 @@ export const addCityByLocation = (lat, lon) => {
                 dispatch(updateCity(data2, data.id))
             })
         })
-        .catch(error => {
+            .catch(error => {
                 console.log('error addCityByLocation in Reducers')
             });
     }
@@ -82,11 +93,11 @@ export const addCityByName = (newCity, isLoaded, cityId) => {
         dispatch(addCity(newCity, isLoaded));
         cityApi.getCityByName(newCity.name).then(data => {
             dispatch(addUpdateCity(data, cityId))
-        cityApi.getTomorrowByLocation(data.coord.lat, data.coord.lon).then(data2 => {
+            cityApi.getTomorrowByLocation(data.coord.lat, data.coord.lon).then(data2 => {
                 dispatch(updateCity(data2, data.id))
             })
         })
-        .catch(error => {
+            .catch(error => {
                 console.log('error addCityByName in Reducers')
             });
     }

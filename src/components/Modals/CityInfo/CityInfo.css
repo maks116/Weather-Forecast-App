@@ -13,12 +13,13 @@
 
 .sunrise {
     position: absolute;
-    background-color:rgb(249, 215, 28)
+    background-color:rgb(249, 215, 28);
+    border-radius: 50px 50px 50px 50px;
 }
 .sunset {
     position: absolute;
-    background-color:rgb(189, 208, 228)
-
+    background-color:rgb(189, 208, 228);
+    border-radius: 50px 50px 50px 50px;
 }
 
 .container-cube{
