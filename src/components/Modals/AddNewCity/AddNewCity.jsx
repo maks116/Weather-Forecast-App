@@ -47,7 +47,7 @@ const AddNewCity = (props) => {
                     <input    
                         type="text"      
                         className="input-city"
-                        placeholder="Moscow examplle"
+                        placeholder={newCity}
                         onChange={onNewCityChange}                    
                     />
                 </Modal.Body>

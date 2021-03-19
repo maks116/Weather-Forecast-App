@@ -12,6 +12,7 @@ const initialState = {
 
 const myReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case DELETE_CITY: {
             const idx = state.citys.findIndex((el) => el.id === action.cityId)
             return { ...state, citys: [...state.citys.slice(0, idx), ...state.citys.slice(idx + 1)] }
@@ -31,7 +32,7 @@ const myReducer = (state = initialState, action) => {
                 firstLoad: false
             }
         }
-        
+
         case UPDATE_CITY: {
             const { newCity, cityId } = action;
             return {

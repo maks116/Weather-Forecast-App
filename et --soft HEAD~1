@@ -1,0 +1,65 @@
+[33mcommit 376674b6c47ed4d8624862992f3164e80210c50e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Fri Mar 19 02:58:46 2021 +0300
+
+    fixed more error =) i want to sleep
+
+[33mcommit 600d69bfb8b5f9e71525274cd5881e903ce5cf02[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Thu Mar 18 05:02:05 2021 +0300
+
+    fixed more error =) i want to sleep
+
+[33mcommit 7d92b2c0afb7fb0a9ac12cce2d8ece01687c4a63[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Thu Mar 18 02:10:32 2021 +0300
+
+    edit README
+
+[33mcommit 7c478ffe1f1026068906926d4708e4d7fdc8002e[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Thu Mar 18 02:08:53 2021 +0300
+
+    на русском можно? добавил немного комментариев и небольшой рефакторинг
+
+[33mcommit 14eac65e347e948a8cfdca5c3662dc9a2441e9bb[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Thu Mar 18 01:57:42 2021 +0300
+
+    Added weather forecast for tomorrow and reflection of sunset and sunrise
+
+[33mcommit d4080904998f695d4e9ea511ac05382213085497[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Wed Mar 17 20:45:18 2021 +0300
+
+    add catch error and two modal window
+
+[33mcommit 1cd7ca4bc61b466a6fc930ce6513e1287a68b82e[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Wed Mar 17 09:39:56 2021 +0300
+
+    good refactoring
+
+[33mcommit fa6a5a54422b7a9138d8e00ae62eb5b4f8d7da25[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Wed Mar 17 08:30:24 2021 +0300
+
+    add autoApdate
+
+[33mcommit 957433a88d7dec12a6650130fc98466b50855cba[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Wed Mar 17 05:42:06 2021 +0300
+
+    add README
+
+[33mcommit 421a6793bdd6d649ab99a9221234be22f63bef41[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Wed Mar 17 05:39:33 2021 +0300
+
+    1(+)2(+-)3(-)4(-)
+
+[33mcommit 8e8693a748bba1fc4ef1ada6316bcf5790c67b1b[m
+Author: Maksim <zakiev.maksim@yandex.ru>
+Date:   Mon Mar 15 23:49:27 2021 +0300
+
+    Initialize project using Create React App
